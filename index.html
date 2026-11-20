@@ -1,11 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trailblazers  Project</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Class Attendance Register</title>
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <h1>SixSeven</h1>
+<main class="app">
+  <header>
+    <h1>Class Attendance Register</h1>
+    <p>Tap a box to mark a student: empty, then present, then absent. Replaces the paper class sheet.</p>
+  </header>
+
+  <div class="toolbar">
+    <label class="search">
+      <span class="sr-only">Search students</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Search" autocomplete="off" />
+    </label>
+    <label><span class="sr-only">Grade</span>
+      <select id="grade"></select>
+    </label>
+    <label><span class="sr-only">Week</span>
+      <select id="week"></select>
+    </label>
+  </div>
+
+  <div class="stats" aria-live="polite">
+    <div class="stat"><span>Students</span><strong id="sCount">0</strong></div>
+    <div class="stat"><span>Present today</span><strong id="sToday">0</strong></div>
+    <div class="stat"><span>Week attendance</span><strong id="sRate">0%</strong></div>
+    <div class="stat"><span>Not yet marked</span><strong id="sUnmarked">0</strong></div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <caption class="sr-only">Weekly attendance per student</caption>
+      <thead id="thead"></thead>
+      <tbody id="tbody"></tbody>
+      <tfoot id="tfoot"></tfoot>
+    </table>
+  </div>
+
+  <div class="legend">
+    <span><i style="background:var(--present)"></i>Present</span>
+    <span><i style="background:var(--absent)"></i>Absent</span>
+    <span><i style="border:1.5px dashed #c3c9c5"></i>Not marked</span>
+  </div>
+
+  <div class="add-form" role="group" aria-label="Add student">
+    <label class="sr-only" for="newName">New student name</label>
+    <input id="newName" placeholder="Add a student to this grade" autocomplete="off" />
+    <button class="btn" id="addBtn" type="button">Add student</button>
+  </div>
+
+  <div class="footer-row">
+    <div class="toast" id="toast" role="status"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn danger" id="clearAllBtn" type="button">Clear all</button>
+      <button class="btn" id="exportBtn" type="button">Export CSV</button>
+      <button class="btn primary" id="saveBtn" type="button">Submit register</button>
+    </div>
+  </div>
+</main>
+
+<script src="./script.js"></script>
 </body>
 </html>
